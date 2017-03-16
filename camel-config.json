@@ -1,5 +1,6 @@
 {
   "log": {
+    "level": "info",
     "filePath": "./logs/logs.txt",
     "errorFilePath": "./logs/logs-error.txt"
   },

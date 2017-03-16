@@ -124,11 +124,13 @@ export class LogService implements ILogService
             };
 
             var fileOptions = {
+                level: logConfiguration.level,
                 json: false,
                 filename: logConfiguration.filePath,
                 timestamp: timeStampFunction
             };
             var consoleOptions = {
+                level: logConfiguration.level,
                 timestamp: timeStampFunction
             };
             // Create classic logger with console and syslog

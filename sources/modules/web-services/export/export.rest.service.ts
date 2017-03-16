@@ -32,7 +32,7 @@ export class ExportRestService extends RestService{
 
         let router: express.Router = express.Router();
 
-        // Get configurations list
+        // Get
         router.get('',
             (req: express.Request, res: express.Response, next: express.NextFunction) => {
                 this.executeWithInjection(req, res, next, ExportRestService, ExportRestService.prototype.getExports);
