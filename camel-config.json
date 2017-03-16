@@ -1,0 +1,9 @@
+{
+  "log": {
+    "filePath": "./logs/logs.txt",
+    "errorFilePath": "./logs/logs-error.txt"
+  },
+  "application": {
+    "versionFile": "/app/version.txt"
+  }
+}
