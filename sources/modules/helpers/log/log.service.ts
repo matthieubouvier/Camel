@@ -1,4 +1,5 @@
 /**
+ *
  * Logs and traces management.
  *      Every logs (info, error, warn and debug) are saved.
  *      Saved logs can be dumped on demand.

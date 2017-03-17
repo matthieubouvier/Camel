@@ -33,21 +33,21 @@ describe('Export REST service should', function() {
         mockExpress = ExpressMock.getExpressMockGeneric(declaredRoutes);
         mockWinston = new GenericMock();
         mockLoginService = new GenericMock();
-        testExportRestModule = LoadModule.loadModule('./modules/web-services/export/export.rest.service.js',
+        testExportRestModule = LoadModule.loadModule('./modules/web-services/export/rest.export.service.js',
             {
                 'winston': mockWinston,
                 'express': mockExpress,
                 '../../helpers/login/login.service': mockLoginService
             }
         );
-        testExportRestModule.ExportRestService.getRouter();
+        testExportRestModule.RestExportService.getRouter();
     });
 
     /*
      * Functions availability.
      */
     it('have a constructor', function() {
-        expect(typeof(testExportRestModule.ExportRestService)).toBe('function');
+        expect(typeof(testExportRestModule.RestExportService)).toBe('function');
     });
 
     /*

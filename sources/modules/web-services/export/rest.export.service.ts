@@ -18,7 +18,7 @@ import { ILogService } from '../../helpers/log/log.service';
 import { inject } from '../../../decorators/inject';
 
 @inject('ILogService')
-export class ExportRestService extends RestService{
+export class RestExportService extends RestService{
 
     /**
      * Constructor
@@ -35,7 +35,7 @@ export class ExportRestService extends RestService{
         // Get
         router.get('',
             (req: express.Request, res: express.Response, next: express.NextFunction) => {
-                this.executeWithInjection(req, res, next, ExportRestService, ExportRestService.prototype.getExports);
+                this.executeWithInjection(req, res, next, RestExportService, RestExportService.prototype.getExports);
             }
         );
 

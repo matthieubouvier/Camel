@@ -49,7 +49,7 @@ import { Ioc } from './modules/helpers/dependency-injector/dependency-injector.s
 import { LogService, ILogService } from './modules/helpers/log/log.service';
 import { ErrorService, IErrorService } from './modules/helpers/error/error.service';
 
-import { ExportRestService } from './modules/web-services/export/export.rest.service';
+import { RestExportService } from './modules/web-services/export/rest.export.service';
 
 
 /**************************************************
@@ -136,7 +136,7 @@ function launchWebServer(): any {
         .use(passport.initialize())
         .use(passport.session())
         // REST routes
-        .use('/api/export', ExportRestService.getRouter())
+        .use('/api/export', RestExportService.getRouter())
         // Errors handling
         .use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
             // Manage known exceptions (invalid request, ...)
