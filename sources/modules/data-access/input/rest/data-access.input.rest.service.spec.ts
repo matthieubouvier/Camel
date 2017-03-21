@@ -3,6 +3,7 @@
  * MySQL service unit tests.
  *
  * 2017-03-17: [MBR] Creation.
+ * 2017-03-20: [MBR] Add REST client calls and configuration.
  *
  */
 
@@ -23,6 +24,14 @@ describe('Data access input REST service should', () => {
     var testRestService;
     // Mocks
     var mockLogService;
+    // Variables
+    var completeRestConfiguration = {
+        baseURL: 'baseURL',
+        progListAPI: 'progListAPI',
+        hgListAPI: 'hgListAPI',
+        sysConfAPI: 'sysConfAPI',
+        sysDataAPI: 'sysDataAPI'
+    };
 
     /*
      * Tests setup and teardown.
@@ -41,7 +50,8 @@ describe('Data access input REST service should', () => {
      * constructor behavior.
      */
     describe('have a constructor, which should', () => {
-        it('exists', () => {
+
+       it('exists', () => {
             expect(typeof(testRestModule.DataAccessInputRestService)).toBe('function');
         });
 
@@ -51,20 +61,80 @@ describe('Data access input REST service should', () => {
                 expect('DataAccessInputRestService exception').toBe('caught');
             } catch (e) {
                 expect(e.name).toBe('Error');
-                expect(e.message).toBe('MySQL configuration not complete.');
+                expect(e.message).toBe('REST configuration not complete.');
+            }
+        });
+
+        it('throw exception when no base URL is defined', () => {
+            var restConfiguration = Object.assign({}, completeRestConfiguration);
+            delete restConfiguration.baseURL;
+            try {
+                testRestModule.DataAccessInputRestService(restConfiguration);
+                expect('DataAccessInputRestService exception').toBe('caught');
+            } catch (e) {
+                expect(e.name).toBe('Error');
+                expect(e.message).toBe('REST configuration not complete.');
+            }
+        });
+
+        it('throw exception when no programs URL is defined', () => {
+            var restConfiguration = Object.assign({}, completeRestConfiguration);
+            delete restConfiguration.progListAPI;
+            try {
+                testRestModule.DataAccessInputRestService(restConfiguration);
+                expect('DataAccessInputRestService exception').toBe('caught');
+            } catch (e) {
+                expect(e.name).toBe('Error');
+                expect(e.message).toBe('REST configuration not complete.');
+            }
+        });
+
+        it('throw exception when no program devices URL is defined', () => {
+            var restConfiguration = Object.assign({}, completeRestConfiguration);
+            delete restConfiguration.hgListAPI;
+            try {
+                testRestModule.DataAccessInputRestService(restConfiguration);
+                expect('DataAccessInputRestService exception').toBe('caught');
+            } catch (e) {
+                expect(e.name).toBe('Error');
+                expect(e.message).toBe('REST configuration not complete.');
+            }
+        });
+
+        it('throw exception when no device config URL is defined', () => {
+            var restConfiguration = Object.assign({}, completeRestConfiguration);
+            delete restConfiguration.sysConfAPI;
+            try {
+                testRestModule.DataAccessInputRestService(restConfiguration);
+                expect('DataAccessInputRestService exception').toBe('caught');
+            } catch (e) {
+                expect(e.name).toBe('Error');
+                expect(e.message).toBe('REST configuration not complete.');
+            }
+        });
+
+        it('throw exception when no device measures URL is defined', () => {
+            var restConfiguration = Object.assign({}, completeRestConfiguration);
+            delete restConfiguration.sysDataAPI;
+            try {
+                testRestModule.DataAccessInputRestService(restConfiguration);
+                expect('DataAccessInputRestService exception').toBe('caught');
+            } catch (e) {
+                expect(e.name).toBe('Error');
+                expect(e.message).toBe('REST configuration not complete.');
             }
         });
 
         it('work when configuration complete', () => {
-            var dbConfiguration = {
-                username: 'username',
-                password: 'password',
-                host: 'host',
-                port: 'port',
-                database: 'database'
-            };
-            expect(typeof(testRestModule.DataAccessInputRestService(dbConfiguration))).toBe('undefined');
+            try {
+                testRestModule.DataAccessInputRestService(completeRestConfiguration);
+                expect(typeof(testRestModule.DataAccessInputRestService(completeRestConfiguration))).toBe('undefined');
+            } catch (e) {
+                expect(e.name).toBeUndefined();
+                expect(e.message).toBeUndefined();
+            }
         });
+
     });
 
     /*
@@ -76,14 +146,7 @@ describe('Data access input REST service should', () => {
          * Tests setup and teardown.
          */
         beforeEach(() => {
-            var dbConfiguration = {
-                username: 'username',
-                password: 'password',
-                host: 'host',
-                port: 'port',
-                database: 'database'
-            };
-            testRestService = new testRestModule.DataAccessInputRestService(dbConfiguration, mockLogService);
+            testRestService = new testRestModule.DataAccessInputRestService(completeRestConfiguration, mockLogService);
         });
 
         /*

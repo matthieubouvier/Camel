@@ -63,7 +63,7 @@ import { RestExportService } from './modules/web-services/export/rest.export.ser
 // Callback used for reading web server config file
 function initWebServer() {
     return function(err, obj) {
-        if(err) {
+        if (err) {
             console.error(err);
             process.exit(1);
         } else {
@@ -75,7 +75,7 @@ function initWebServer() {
             //  - Init services
             initServices(obj);
             // - Launch server !
-            launchWebServer();
+            launchWebServer(obj.webServer);
         }
     };
 }
@@ -106,7 +106,7 @@ function initLog(logConfiguration: any): void {
  * Init application services.
  * databaseService has to be initiated before calling.
  */
-function initServices(obj:any): void {
+function initServices(obj: any): void {
 
     // Main singleton
     errorService = new ErrorService();
@@ -119,9 +119,9 @@ function initServices(obj:any): void {
 /**
  * Init and launch web server.
  */
-function launchWebServer(): any {
+function launchWebServer(obj: any): any {
     sessionMiddleware = session({
-        secret: 'TDS-2016',
+        secret: 'C@m3l s3cr3t',
         resave: false,
         saveUninitialized: false
     });
@@ -159,8 +159,8 @@ function launchWebServer(): any {
             currentLogService.error('Last error catched before dump logs=', err);
             currentLogService.dumpSavedLogs();
         });
-    var server = app.listen(3002, function () {
-        logService.info('TDS web configurator server listening at http://%s:%d', 'localhost', 3002);
+    var server = app.listen(obj.port, function () {
+        logService.info('TDS web configurator server listening at http://%s:%d', 'localhost', obj.port);
     });
     return server;
 }

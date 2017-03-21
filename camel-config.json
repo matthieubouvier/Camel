@@ -4,7 +4,26 @@
     "filePath": "./logs/logs.txt",
     "errorFilePath": "./logs/logs-error.txt"
   },
-  "application": {
-    "versionFile": "/app/version.txt"
+  "webServer": {
+    "port": 3002
+  },
+  "wiserREST": {
+    "baseURL": "https://public.wcs-test.schneider-electric.ws",
+    "progListAPI": "/api/crp/v1/program/list",
+    "hgListAPI": "/api/crp/v1/program/home-group/list/",
+    "sysConfAPI": "/api/crp/v1/program/system/config/",
+    "sysDataAPI": "/api/crp/v1/program/system/data/"
+  },
+  "oAuth2": {
+    "authClient": {
+      "id": "crct_client",
+      "secret": "crct_secret",
+      "host": "https://public.wcs-test.schneider-electric.ws/oauth/token"
+    },
+    "token": {
+      "user": "Pascal",
+      "password": "camel123!",
+      "scope": ""
+    }
   }
 }

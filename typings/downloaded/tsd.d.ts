@@ -11,6 +11,7 @@
 /// <reference path="jasmine/jasmine.d.ts" />
 /// <reference path="mime/mime.d.ts" />
 /// <reference path="node/node.d.ts" />
+/// <reference path="node-rest-client/node-rest-client.d.ts" />
 /// <reference path="passport/passport.d.ts" />
 /// <reference path="passport-local/passport-local.d.ts" />
 /// <reference path="q/Q.d.ts" />
